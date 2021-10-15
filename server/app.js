@@ -7,7 +7,7 @@ const cors = require("cors")
 const nodemailer = require("nodemailer")
 const emailCheck = require("email-check")
 
-const serverAddress = "http://172.16.4.72:3000"
+const serverAddress = "http://172.16.4.195:3000"
 
 let connections = 0
 
