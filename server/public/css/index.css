@@ -1,0 +1,32 @@
+body {
+    background-color: #090917
+}
+
+.Header {
+    color: white;
+    font-size: 40px;
+    text-align: center;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.seatsContainer input {
+    max-width: 20px;
+    min-width: 20px;
+    margin: 1px;
+}
+
+.textInput {
+    font-size: 19px;
+}
+
+.button {
+    font-size: 19px;
+    padding: 10px
+}

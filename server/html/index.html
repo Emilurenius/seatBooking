@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="nob">
+<head>
+
+    <link rel="stylesheet" href="/static/css/index.css">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elevkveld Sete reservering</title>
+</head>
+<body>
+    
+    <p class="Header">Velg et sete:</p>
+    <div class="centered"><table id="table"></table></div>
+
+    <div class="centered">
+        <input type="text" id="name" class="textInput" placeholder="Navn">
+    </div>
+    <div class="centered">
+        <input type="email" id="mail" class="textInput" placeholder="Email">
+    </div>
+    <div class="centered">
+        <input type="button" class="button" id="submit" value="Reserver sete">
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/static/javascript/functions.js"></script>
+    <script src="/static/javascript/seatSelectionHandler.js"></script>
+</body>
+</html>
