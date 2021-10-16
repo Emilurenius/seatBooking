@@ -16,7 +16,7 @@ function saveJSON(json, filename) {
 }
 
 setInterval(() => {
-    let pending = loadJSON("/local/json/pendingSeats.json")
+    let pending = loadJSON("/public/json/pendingSeats.json")
 
     for (const [k, v] of Object.entries(pending)) {
         if (parseInt(v.timestamp) - Date.now() < 5000) { // 300000
