@@ -4,7 +4,7 @@ function reservedList() {
     container = document.getElementById("container")
     for (const [k, v] of Object.entries(list)) {
         const text = document.createElement("p")
-        text.innerHTML = `Sete ${alphabet[v.seat.split(':')[0]]}:${v.seat.split(':')[1]} ==> ${v.name}`
+        text.innerHTML = `Sete ${alphabet[k.split(':')[0]]}:${k.split(':')[1]} ==> ${v.name}`
         list.appendChild(list)
     }
 }reservedList()
