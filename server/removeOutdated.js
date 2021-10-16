@@ -1,4 +1,5 @@
 const path = require("path")
+const fs = require("fs")
 
 function loadJSON(filename) {
     const rawdata = fs.readFileSync(path.join(__dirname, filename))
