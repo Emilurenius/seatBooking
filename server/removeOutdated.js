@@ -21,7 +21,7 @@ setInterval(() => {
 
     for (const [k, v] of Object.entries(pending)) {
         console.log(Date.now() - parseInt(v.timestamp))
-        if (Date.now() - parseInt(v.timestamp) > 5000) { // 300000
+        if (Date.now() - parseInt(v.timestamp) > 300000) { // 300000
             delete pending[k]
             console.log(`Seat ${k} was reserved, but never confirmed. Reservation removed!`)
             save = true
@@ -31,4 +31,4 @@ setInterval(() => {
         saveJSON(pending, "/public/json/pendingSeats.json")
     }
 
-}, 5000) // 300000
+}, 5000)
