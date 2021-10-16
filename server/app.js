@@ -144,7 +144,7 @@ app.get("/confirm", (req, res) => {
             from: "emilsen68@gmail.com",
             to: occupiedSeats[confirmedReservation].mail,
             subject: "Elevkveld reservasjon Kvittering",
-            text: `Du har nå reservert sete ${alphabet[confirmedReservation.split(":")[0]]}:${confirmedReservation.split(":")[1] + 1}`
+            text: `Du har nå reservert sete ${alphabet[confirmedReservation.split(":")[0]]}:${parseInt(confirmedReservation.split(":")[1]) + 1}`
         }
 
         transporter.sendMail(mailOptions, (error, info) => {
