@@ -91,7 +91,8 @@ app.get("/reserveseat", (req, res) => {
         pendingSeats[req.query.seat] = {
             "name": req.query.name,
             "mail": req.query.mail,
-            "code": randCode
+            "code": randCode,
+            "timestamp": Date.now()
         }
         saveJSON(pendingSeats, "/public/json/pendingSeats.json")
 
