@@ -139,6 +139,27 @@ app.get("/confirm", (req, res) => {
 
         saveJSON(occupiedSeats, "/public/json/occupiedSeats.json")
         saveJSON(pendingSeats, "/public/json/pendingSeats.json")
+
+        const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Æ", "Ø", "Å"]
+
+        const mailOptions = {
+            from: "emilsen68@gmail.com",
+            to: req.query.mail,
+            subject: "Elevkveld reservasjon Kvittering",
+            text: `Du har nå reservert sete ${confirmedReservation}`
+        }
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log(error)
+                res.send(error)
+            }
+            else {
+                console.log(`Email sent: ${info.response}`)
+                res.send(`Email sent: ${info.response}`)
+            }
+        })
+
     }
     else {
         res.send("Oida! Den reservasjonen finnes ikke!\nHvis det er mer enn 5 minutter siden du reserverte setet, har tiden gått ut!")
