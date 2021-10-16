@@ -6,7 +6,7 @@ function reservedList() {
         const text = document.createElement("p")
         text.innerHTML = `Sete ${alphabet[k.split(':')[0]]}:${k.split(':')[1]} ==> ${v.name}`
         console.log(text)
-        //container.appendChild(text)
+        container.appendChild(text)
     }
     console.log(container)
 }reservedList()
