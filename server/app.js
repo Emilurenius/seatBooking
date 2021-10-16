@@ -142,7 +142,7 @@ app.get("/confirm", (req, res) => {
 
         const mailOptions = {
             from: "emilsen68@gmail.com",
-            to: req.query.mail,
+            to: occupiedSeats[confirmedReservation].mail,
             subject: "Elevkveld reservasjon Kvittering",
             text: `Du har nå reservert sete ${confirmedReservation}`
         }
