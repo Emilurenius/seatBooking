@@ -20,7 +20,7 @@ setInterval(() => {
     let save = false
 
     for (const [k, v] of Object.entries(pending)) {
-        console.log(Date.now() - parseInt(v.timestamp))
+        console.log(parseInt(v.timestamp) - Date.now())
         if (Date.now() - parseInt(v.timestamp) < 5000) { // 300000
             delete pending[k]
             console.log(`Seat ${k} was reserved, but never confirmed. Reservation removed!`)
