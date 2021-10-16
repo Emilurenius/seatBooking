@@ -5,6 +5,6 @@ function reservedList() {
     for (const [k, v] of Object.entries(list)) {
         const text = document.createElement("p")
         text.innerHTML = `Sete ${alphabet[k.split(':')[0]]}:${k.split(':')[1]} ==> ${v.name}`
-        container.appendChild(list)
+        container.appendChild(text)
     }
 }reservedList()
