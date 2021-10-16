@@ -163,4 +163,8 @@ app.get("/confirm", (req, res) => {
     }
 })
 
+app.get("/reservertliste", (req, res) => {
+    res.sendFile(path.join(__dirname, "/html/reservedList.html"))
+})
+
 app.listen(port, () => console.log(`Listening on ${port}`))
