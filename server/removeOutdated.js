@@ -17,13 +17,18 @@ function saveJSON(json, filename) {
 
 setInterval(() => {
     let pending = loadJSON("/public/json/pendingSeats.json")
+    let save = false
 
     for (const [k, v] of Object.entries(pending)) {
+        console.log(Date.now() - parseInt(v.timestamp))
         if (Date.now() - parseInt(v.timestamp) < 5000) { // 300000
             delete pending[k]
             console.log(`Seat ${k} was reserved, but never confirmed. Reservation removed!`)
+            save = true
         }
     }
-    saveJSON(pending, "/public/json/pendingSeats.json")
+    if (save) {
+        saveJSON(pending, "/public/json/pendingSeats.json")
+    }
 
 }, 5000) // 300000
