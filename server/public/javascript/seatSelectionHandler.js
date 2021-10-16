@@ -35,8 +35,8 @@ function seatSelectionhandler() {
 
                 button.onclick = (event) => {
                     console.log(event.target.id)
-                    if (button.id in occupiedList) {
-                        alert("Sete er ikke ledig")
+                    if (event.target.id in occupiedList) {
+                        console.log("Sete er ikke ledig")
                     }
                     else {
 
