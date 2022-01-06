@@ -71,50 +71,54 @@ function seatSelectionhandler() {
     submitButton.addEventListener("click", (event) => {
         console.log(`${Name.value}, ${mail.value}`)
         const mailExists = getJSON(`${url}/mailtest?mail=${mail.value}`)
+        let adminByPass
         if (mailExists.msg == 'adminByPassed') {
             alert('Setet er reservert av admin')
+
         }
-        else {
-            const occupiedList = getJSON(`${url}/static/json/occupiedSeats.json`)
-            let alreadyReserved = false
-            for (const [k, v] of Object.entries(occupiedList)) {
-                if (mail.value == v.mail) {
-                    alert("Vent nå litt!!!\nDu har allerede reservert et sete!")
-                    alreadyReserved = true
-                    break
+
+        const occupiedList = getJSON(`${url}/static/json/occupiedSeats.json`)
+        let alreadyReserved = false
+        for (const [k, v] of Object.entries(occupiedList)) {
+            if (mail.value == v.mail && mail.value != 'adminByPassed') {
+                alert("Vent nå litt!!!\nDu har allerede reservert et sete!")
+                alreadyReserved = true
+                break
+            }
+        }
+        if (!alreadyReserved && mailExists && seatSelected.state && !adminByPass) {
+            response = getJSON(`${url}/reserveseat?name=${Name.value}&mail=${mail.value}&seat=${seatSelected.seat}`)
+            if (response.response == "Success") {
+                alert(`Sete reservert!\nEn Mail har blitt sendt til ${mail.value}.\nÅpne mailen for å bekrefte plassen din innen 5 minutter!`)
+            }
+            else if (response.response == "Already reserved") {
+                alert("Setet er allerede reservert!")
+                populateSeats()
+                seatSelected = {
+                    state: false,
+                    seat: ""
                 }
             }
-            if (!alreadyReserved && mailExists && seatSelected.state) {
-                response = getJSON(`${url}/reserveseat?name=${Name.value}&mail=${mail.value}&seat=${seatSelected.seat}`)
-                if (response.response == "Success") {
-                    alert(`Sete reservert!\nEn Mail har blitt sendt til ${mail.value}.\nÅpne mailen for å bekrefte plassen din innen 5 minutter!`)
-                }
-                else if (response.response == "Already reserved") {
-                    alert("Setet er allerede reservert!")
-                    populateSeats()
-                    seatSelected = {
-                        state: false,
-                        seat: ""
-                    }
-                }
-                else if (response.response == "Invalid mail") {
-                    alert("Oida! Denne mailen kunne ikke brukes")
-                }
-                else {
-                    alert("Oisan!\nEn uventet feil har oppstått.\nVennligst prøv igjen.\nHvis problemet vedvarer, ta kontakt med Emil Christiansen.")
-                    populateSeats()
-                    seatSelected = {
-                        state: false,
-                        seat: ""
-                    }
-                }
-            }
-            else if (!seatSelected.state) {
-                alert("Du må velge et sete!")
-            }
-            else if (!alreadyReserved) {
+            else if (response.response == "Invalid mail") {
                 alert("Oida! Denne mailen kunne ikke brukes")
             }
+            else {
+                alert("Oisan!\nEn uventet feil har oppstått.\nVennligst prøv igjen.\nHvis problemet vedvarer, ta kontakt med Emil Christiansen.")
+                populateSeats()
+                seatSelected = {
+                    state: false,
+                    seat: ""
+                }
+            }
+        }
+        else if (!alreadyReserved && seatSelected.state && adminByPass) {
+            response = getJSON(`${url}/reserveseat?name=${Name.value}&mail=${mail.value}&seat=${seatSelected.seat}`)
+        }
+        else if (!seatSelected.state) {
+            alert("Du må velge et sete!")
+        }
+        else if (!alreadyReserved) {
+            alert("Oida! Denne mailen kunne ikke brukes")
         }
     })
     

@@ -8,6 +8,8 @@ const nodemailer = require("nodemailer")
 const emailCheck = require("email-check")
 
 let connections = 0
+const adminPass = 'adminByPass'
+const adminMail = 'emilsen68@gmail.com'
 
 function loadJSON(filename) {
     const rawdata = fs.readFileSync(path.join(__dirname, filename))
@@ -58,7 +60,7 @@ app.get("/", (req, res) => {
 
 app.get("/mailtest", (req, res) => {
 
-    if (req.query.mail == 'adminByPass') {
+    if (req.query.mail == adminPass) {
         res.send({'msg': 'adminByPassed'})
     }
     else {
@@ -99,12 +101,21 @@ app.get("/reserveseat", (req, res) => {
             "timestamp": Date.now()
         }
         saveJSON(pendingSeats, "/public/json/pendingSeats.json")
-
-        const mailOptions = {
-            from: "emilsen68@gmail.com",
-            to: req.query.mail,
-            subject: "Elevkveld reservasjon bekreftelse",
-            text: `Klikk på denne linken for å bekrefte din reservasjon: ${serverAddress}/confirm?code=${randCode}`
+        let mailOptions
+        if (req.query.mail == adminPass) {
+            mailOptions = {
+                from: 'emilsen68@gmail.com',
+                to: adminMail,
+                subject: 'Admin reservasjon bekreftelse',
+                text: `Klikk på denne linken for å bekrefte din admin reservasjon: ${serverAddress}/confirm?code=${randCode}`
+            }
+        }else {
+            mailOptions = {
+                from: "emilsen68@gmail.com",
+                to: req.query.mail,
+                subject: "Elevkveld reservasjon bekreftelse",
+                text: `Klikk på denne linken for å bekrefte din reservasjon: ${serverAddress}/confirm?code=${randCode}`
+            }
         }
 
         transporter.sendMail(mailOptions, (error, info) => {
