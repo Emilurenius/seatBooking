@@ -73,47 +73,48 @@ function seatSelectionhandler() {
         const mailExists = getJSON(`${url}/mailtest?mail=${mail.value}`)
         if (mailExists == 'adminByPassed') {
             alert('Setet er reservert av admin')
-            break
         }
-        const occupiedList = getJSON(`${url}/static/json/occupiedSeats.json`)
-        let alreadyReserved = false
-        for (const [k, v] of Object.entries(occupiedList)) {
-            if (mail.value == v.mail) {
-                alert("Vent nå litt!!!\nDu har allerede reservert et sete!")
-                alreadyReserved = true
-                break
-            }
-        }
-        if (!alreadyReserved && mailExists && seatSelected.state) {
-            response = getJSON(`${url}/reserveseat?name=${Name.value}&mail=${mail.value}&seat=${seatSelected.seat}`)
-            if (response.response == "Success") {
-                alert(`Sete reservert!\nEn Mail har blitt sendt til ${mail.value}.\nÅpne mailen for å bekrefte plassen din innen 5 minutter!`)
-            }
-            else if (response.response == "Already reserved") {
-                alert("Setet er allerede reservert!")
-                populateSeats()
-                seatSelected = {
-                    state: false,
-                    seat: ""
+        else {
+            const occupiedList = getJSON(`${url}/static/json/occupiedSeats.json`)
+            let alreadyReserved = false
+            for (const [k, v] of Object.entries(occupiedList)) {
+                if (mail.value == v.mail) {
+                    alert("Vent nå litt!!!\nDu har allerede reservert et sete!")
+                    alreadyReserved = true
+                    break
                 }
             }
-            else if (response.response == "Invalid mail") {
+            if (!alreadyReserved && mailExists && seatSelected.state) {
+                response = getJSON(`${url}/reserveseat?name=${Name.value}&mail=${mail.value}&seat=${seatSelected.seat}`)
+                if (response.response == "Success") {
+                    alert(`Sete reservert!\nEn Mail har blitt sendt til ${mail.value}.\nÅpne mailen for å bekrefte plassen din innen 5 minutter!`)
+                }
+                else if (response.response == "Already reserved") {
+                    alert("Setet er allerede reservert!")
+                    populateSeats()
+                    seatSelected = {
+                        state: false,
+                        seat: ""
+                    }
+                }
+                else if (response.response == "Invalid mail") {
+                    alert("Oida! Denne mailen kunne ikke brukes")
+                }
+                else {
+                    alert("Oisan!\nEn uventet feil har oppstått.\nVennligst prøv igjen.\nHvis problemet vedvarer, ta kontakt med Emil Christiansen.")
+                    populateSeats()
+                    seatSelected = {
+                        state: false,
+                        seat: ""
+                    }
+                }
+            }
+            else if (!seatSelected.state) {
+                alert("Du må velge et sete!")
+            }
+            else if (!alreadyReserved) {
                 alert("Oida! Denne mailen kunne ikke brukes")
             }
-            else {
-                alert("Oisan!\nEn uventet feil har oppstått.\nVennligst prøv igjen.\nHvis problemet vedvarer, ta kontakt med Emil Christiansen.")
-                populateSeats()
-                seatSelected = {
-                    state: false,
-                    seat: ""
-                }
-            }
-        }
-        else if (!seatSelected.state) {
-            alert("Du må velge et sete!")
-        }
-        else if (!alreadyReserved) {
-            alert("Oida! Denne mailen kunne ikke brukes")
         }
     })
     
