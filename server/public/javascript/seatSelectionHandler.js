@@ -15,10 +15,10 @@ function seatSelectionhandler() {
         const occupiedList = getJSON(`${url}/static/json/occupiedSeats.json`)
         const pendingList = getJSON(`${url}/static/json/pendingSeats.json`)
 
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 3; i++) {
             tr = document.createElement("tr")
 
-            for (let y = 0; y < 12; y++) {
+            for (let y = 0; y < 7; y++) {
                 td = document.createElement("td")
                 button = document.createElement("input")
                 button.type = "button"
