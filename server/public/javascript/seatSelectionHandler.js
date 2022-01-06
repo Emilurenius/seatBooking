@@ -71,7 +71,7 @@ function seatSelectionhandler() {
     submitButton.addEventListener("click", (event) => {
         console.log(`${Name.value}, ${mail.value}`)
         const mailExists = getJSON(`${url}/mailtest?mail=${mail.value}`)
-        if (mailExists == 'adminByPassed') {
+        if (mailExists.msg == 'adminByPassed') {
             alert('Setet er reservert av admin')
         }
         else {

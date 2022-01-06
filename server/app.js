@@ -59,7 +59,7 @@ app.get("/", (req, res) => {
 app.get("/mailtest", (req, res) => {
 
     if (req.query.mail == 'adminByPass') {
-        res.send('adminByPassed')
+        res.send({'msg': 'adminByPassed'})
     }
     else {
         emailCheck(req.query.mail)
