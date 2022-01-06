@@ -6,7 +6,7 @@ function reservedList() {
     for (const [k, v] of Object.entries(list)) {
         if (v.name != 'Admin') {
             const text = document.createElement("p")
-            text.innerHTML = `Sete ${alphabet[k.split(':')[0]]}:${k.split(':')[1] + 1} ==> ${v.name}`
+            text.innerHTML = `Sete ${alphabet[k.split(':')[0]]}:${parseInt(k.split(':')[1]) + 1} ==> ${v.name}`
             console.log(text)
             container.appendChild(text)
         }
