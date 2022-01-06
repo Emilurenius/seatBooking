@@ -24,9 +24,9 @@ function seatSelectionhandler() {
                 button.type = "button"
                 button.id = `${i}:${y}`
 
-                if (button.id in occupiedList && occupiedList[button.id].name == 'Admin') {
-                    button.style = 'background-color: #090917 background: none; color: inherit; border: none; cursor: pointer; outline: none;'
-                }
+                // if (button.id in occupiedList && occupiedList[button.id].name == 'Admin') {
+                //     //button.style = 'background-color: #090917 background: none; color: #090917; border: none; cursor: pointer; outline: none;'
+                // }
                 else if (button.id in occupiedList) {
                     console.log(`${button.id} is occupied by ${occupiedList[button.id].name}`)
                     button.style = "background-color: #ff4a4a"
