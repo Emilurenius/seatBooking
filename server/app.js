@@ -8,7 +8,7 @@ const nodemailer = require("nodemailer")
 const emailCheck = require("email-check")
 
 let connections = 0
-const adminPass = 'adminByPass'
+const adminPass = 'pootis'
 const adminMail = 'emilsen68@gmail.com'
 
 function loadJSON(filename) {
