@@ -7,8 +7,6 @@ const cors = require("cors")
 const nodemailer = require("nodemailer")
 const emailCheck = require("email-check")
 
-const serverAddress = "http://172.16.4.195:3000"
-
 let connections = 0
 
 function loadJSON(filename) {
@@ -43,9 +41,10 @@ const transporter = nodemailer.createTransport({
 
 
 // Reading input from terminal start
-const port = parseInt(process.argv[2])
+const port = parseInt(process.argv[2]) || 3000
 console.log(`${port} registered as server port`)
 // Reading input from terminal end
+const serverAddress = `http://172.16.1.190:${port}`
 
 app.use(cors()) // Making sure the browser can request more data after it is loaded on the client computer.
 
