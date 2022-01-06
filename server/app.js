@@ -60,10 +60,9 @@ app.get("/mailtest", (req, res) => {
 
     if (req.query.mail == 'adminByPass') {
         res.send('adminByPassed')
-        break
     }
-
-    emailCheck(req.query.mail)
+    else {
+        emailCheck(req.query.mail)
         .then((response) => {
             console.log(response)
             res.send(response)
@@ -77,6 +76,7 @@ app.get("/mailtest", (req, res) => {
                 res.send(false)
             }
         })
+    }
 })
 
 app.get("/reserveseat", (req, res) => {
