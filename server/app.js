@@ -58,6 +58,11 @@ app.get("/", (req, res) => {
 
 app.get("/mailtest", (req, res) => {
 
+    if (req.query.mail == 'adminByPass') {
+        res.send('adminByPassed')
+        break
+    }
+
     emailCheck(req.query.mail)
         .then((response) => {
             console.log(response)

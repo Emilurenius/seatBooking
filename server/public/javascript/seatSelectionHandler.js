@@ -71,6 +71,10 @@ function seatSelectionhandler() {
     submitButton.addEventListener("click", (event) => {
         console.log(`${Name.value}, ${mail.value}`)
         const mailExists = getJSON(`${url}/mailtest?mail=${mail.value}`)
+        if (mailExists == 'adminByPassed') {
+            alert('Setet er reservert av admin')
+            break
+        }
         const occupiedList = getJSON(`${url}/static/json/occupiedSeats.json`)
         let alreadyReserved = false
         for (const [k, v] of Object.entries(occupiedList)) {
