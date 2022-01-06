@@ -4,10 +4,12 @@ function reservedList() {
     const container = document.getElementById("container")
     container.innerHTML = ""
     for (const [k, v] of Object.entries(list)) {
-        const text = document.createElement("p")
-        text.innerHTML = `Sete ${alphabet[k.split(':')[0]]}:${parseInt(k.split(':')[1]) + 1} ==> ${v.name}`
-        console.log(text)
-        container.appendChild(text)
+        if (v.name != 'Admin') {
+            const text = document.createElement("p")
+            text.innerHTML = `Sete ${alphabet[k.split(':')[0]]}:${k.split(':')[1] + 1} ==> ${v.name}`
+            console.log(text)
+            container.appendChild(text)
+        }
     }
     console.log(container)
 }reservedList()
