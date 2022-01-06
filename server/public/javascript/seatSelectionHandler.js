@@ -25,7 +25,7 @@ function seatSelectionhandler() {
                 button.id = `${i}:${y}`
 
                 if (button.id in occupiedList && occupiedList[button.id].name == 'Admin') {
-                    button.style = 'display: hidden'
+                    button.style = 'background-color: #090917'
                 }
                 else if (button.id in occupiedList) {
                     console.log(`${button.id} is occupied by ${occupiedList[button.id].name}`)
