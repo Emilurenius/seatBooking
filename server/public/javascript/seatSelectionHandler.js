@@ -18,7 +18,7 @@ function seatSelectionhandler() {
         for (let i = 0; i < 3; i++) {
             tr = document.createElement("tr")
 
-            for (let y = 0; y < 7; y++) {
+            for (let y = 0; y < 8; y++) {
                 td = document.createElement("td")
                 button = document.createElement("input")
                 button.type = "button"
